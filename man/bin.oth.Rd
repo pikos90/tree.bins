@@ -21,12 +21,11 @@ function can be directly passed as an element to this function.
 }
 \examples{
 #Allows the user to generate a list from the tree.bins() function
-library(dplyr)
-sample.df <- AmesImpFctrs \%>\% select(Neighborhood, MS.Zoning, SalePrice)
+sample.df <- AmesImpFctrs[, c("Neighborhood", "MS.Zoning", "SalePrice")]
 lookup.list <- tree.bins(data = sample.df, y = SalePrice, return = "lkup.list")
 
 #Create a new data.frame and use the created list to map recategorize its values
-new.df <- AmesImpFctrs \%>\% select(Neighborhood, MS.Zoning, Lot.Shape, BsmtFin.Type.1, SalePrice) \%>\% head(100)
+new.df <- head(AmesImpFctrs[, c("Neighborhood", "MS.Zoning", "Lot.Shape", "SalePrice")], 100)
 oth.binned.df <- bin.oth(list = lookup.list, data = new.df)
 }
 \seealso{

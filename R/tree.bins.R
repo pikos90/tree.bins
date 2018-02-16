@@ -30,15 +30,14 @@
 #' @return NULL
 #' @examples
 #' #Returns a data.frame of recategorized variables
-#' library(dplyr)
 #' library(rpart)
-#' sample.df <- AmesImpFctrs %>% select(Neighborhood, MS.Zoning, SalePrice)
+#' sample.df <- AmesImpFctrs[, c("Neighborhood", "MS.Zoning", "SalePrice")]
 #' tree.bins(data = sample.df, y = SalePrice)
 #'
 #' #Returns a list of mapping tables generated from tree.bins()
 #' tree.bins(data = sample.df, y = SalePrice, return = "lkup.list")
 #'
-#' #Allows the user to assign the naming convention of the different bins created per recategorized variable
+#' #Allows the user to choose the naming convention for the attribute naming convention
 #' tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#")
 #'
 #' #Allows user to manually assign a cp to each decision tree evaluated using rpart()
@@ -122,8 +121,8 @@ tree.bins <- function(data, y, bin.nm = "Group.",
       #Creating a df of the tree.rules
       tree.df <- data_frame(Names = c(names(tree.rules)),
                             Values = unlist(tree.rules),
-                            LR = ifelse(grepl("R.", Names), "R.", "L."),
-                            VarName = paste(names(df[,i, drop = FALSE])),
+                            #LR = ifelse(grepl("R.", Names), "R.", "L."),  # Not needed for code to run
+                            #VarName = paste(names(df[,i, drop = FALSE])), # Not needed for code ro run
                             Number = ifelse(sub(".*]", "", Names) != "", sub(".*]", "", Names), 0) %>% as.integer())
 
       #Creating an identifier for each split. "End.Group" is where the group will end.

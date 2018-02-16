@@ -37,15 +37,14 @@ for each of the candidate variables.
 }
 \examples{
 #Returns a data.frame of recategorized variables
-library(dplyr)
 library(rpart)
-sample.df <- AmesImpFctrs \%>\% select(Neighborhood, MS.Zoning, SalePrice)
+sample.df <- AmesImpFctrs[, c("Neighborhood", "MS.Zoning", "SalePrice")]
 tree.bins(data = sample.df, y = SalePrice)
 
 #Returns a list of mapping tables generated from tree.bins()
 tree.bins(data = sample.df, y = SalePrice, return = "lkup.list")
 
-#Allows the user to assign the naming convention of the different bins created per recategorized variable
+#Allows the user to choose the naming convention for the attribute naming convention
 tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#")
 
 #Allows user to manually assign a cp to each decision tree evaluated using rpart()
