@@ -45,7 +45,7 @@ recategorized.df <- tree.bins(data = sample.df, y = SalePrice)
 head(recategorized.df)
 ```
 
-Uses tree.bins() to create a list of mapping tables and uses that list to recategorize your a different data set
+Uses tree.bins() to create a list of mapping tables and uses that list to recategorize your a different data set with bin.oth()
 
 ```{r example}
 ## basic example code
