@@ -5,7 +5,7 @@ Version: 0.1.0
 Date: 2018-01-31
 Author: Name = Piro Polo, email = piropolo98@gmail.com
 Maintainer: Piro Polo <piropolo98@gmail.com>
-Description: The package takes in a data set of categorical variables and a response variable. 
+Description: Provides users the ability to categorize categorical variables dependent on a response variable. 
     It creates a decision tree by using one of the categorical variables (class factor) and the selected response variable. 
     The decision tree is created from the rpart function from the rpart library. The rules from the leaves of
     the decision tree are extracted, and used to recategorize the appropriate categorical variable (predictor). This
@@ -16,7 +16,7 @@ Description: The package takes in a data set of categorical variables and a resp
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE
-Depends: R (>= 3.4.3)
+Depends: R (>= 3.4.0)
 Imports:
     dplyr (>= 0.7.4), 
     rpart (>= 4.1-11), 
