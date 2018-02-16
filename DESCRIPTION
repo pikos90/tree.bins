@@ -6,20 +6,26 @@ Date: 2018-01-31
 Author: Name = Piro Polo, email = piropolo98@gmail.com
 Maintainer: Piro Polo <piropolo98@gmail.com>
 Description: The package takes in a data set of categorical variables and a response variable. 
-    It creates a decision tree by using one of the categorical variables and the response variable. 
+    It creates a decision tree by using one of the categorical variables (class factor) and the selected response variable. 
     The decision tree is created from the rpart function from the rpart library. The rules from the leaves of
-    the decision tree are extracted, and used to recategorize the used variable (predictor). This
+    the decision tree are extracted, and used to recategorize the appropriate categorical variable (predictor). This
     step is performed for each of the categorical variables that is fed into the data component of
-    the function. Only variables containing more than 2 factors will be considered in the function. 
+    the function. Only variables containing more than 2 factor levels will be considered in the function. 
     The final output generates a data set containing the recategorized variables. 
-License: What license is it under?
+License: GPL-2
 Encoding: UTF-8
-LazyData: true
+LazyData: TRUE
 Depends: R (>= 3.4.3)
 Imports:
     dplyr (>= 0.7.4), 
     rpart (>= 4.1-11), 
     rpart.utils (>= 0.5), 
     data.table (>= 1.10.4-3)
-Suggests:
 RoxygenNote: 6.0.1
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat, 
+    rpart.plot, 
+    ggplot2
+VignetteBuilder: knitr
