@@ -43,8 +43,14 @@
 #' #Allows user to manually assign a cp to each decision tree evaluated using rpart()
 #' tree.bins(data = sample.df, y = SalePrice, control = rpart.control(cp = .01))
 
+## quiets concerns of R CMD check re: the .'s that appear in pipelines
+#if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
+
 tree.bins <- function(data, y, bin.nm = "Group.",
                       method = NULL, control = NULL, return = "new.fctrs") {
+
+  #Updating Code to remove "no visible binding for global variable" Notes in R check
+  #if(getRversion() >= "2.15.1")  utils::globalVariables(names = c("tree.df$Names", "tree.df$Number"), package = "tree.bin")
 
   #Allowing y to pass in to the rpart function.
   colnm <- eval(substitute(y),data, parent.frame())
@@ -118,6 +124,9 @@ tree.bins <- function(data, y, bin.nm = "Group.",
     #only 1 level will be caught by the "must contain leaves" rule.
     if (is.factor(df[,i]) & length(levels(df[, i])) != 2 & !is.null(c(names(tree.rules)))) {
 
+      #In order to remove the "No visible binding for global variable" Note
+      Names <- Values <- Number <- Cuts <- Categories <- NULL
+
       #Creating a df of the tree.rules
       tree.df <- data_frame(Names = c(names(tree.rules)),
                             Values = unlist(tree.rules),
@@ -167,14 +176,9 @@ tree.bins <- function(data, y, bin.nm = "Group.",
 
       for (k in 1:length(string.list)) {
 
-        # string.list[[4]][, 1] %in% string.list[[1]][, 1]
-        #
-        # sum((string.list[[1]][, 1] %in% string.list[[4]][, 1]) == TRUE) >= 1
-
-
         #Create list to store checks
         check.list <- list()
-        #Loops through
+
         for (m in 1:length(string.list)) {
 
           #Checks to make sure the "Value" column of the kth element of the list is within each
@@ -249,7 +253,7 @@ tree.bins <- function(data, y, bin.nm = "Group.",
       lkup.df <- final.groups %>% select(Values, Categories)
       #Create variables to assign and filter data.frames by.
       nm = names(df[i])
-      #Correctly name the lookup data.frames
+      #Correctly names the lookup data.frames
       colnames(lkup.df) = c(nm, "Categories")
       #Store the values of each data.frame into a list.
       lkup.list[[i]] <- lkup.df

@@ -83,8 +83,8 @@ test_that("Testing for 1 predictor df, for 1L and 1R split & 3 levels", {
   test.df <- AmesSubset %>%
     select(Land.Slope, SalePrice)
 
-  tree = rpart(formula = SalePrice ~ Land.Slope  , cp = .001, data = test.df)
-  rpart.plot(tree)
+  # tree = rpart(formula = SalePrice ~ Land.Slope  , cp = .001, data = test.df)
+  # rpart.plot(tree)
 
   fnc = tree.bins(test.df, SalePrice, control = rpart.control(cp = .001), return = "lkup.list")
   fnc2 = data.frame(Categories = unique(fnc[[1]]$Categories))
