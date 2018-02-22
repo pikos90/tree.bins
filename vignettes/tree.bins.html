@@ -12,7 +12,7 @@
 
 <meta name="author" content="Piro Polo" />
 
-<meta name="date" content="2018-02-19" />
+<meta name="date" content="2018-02-21" />
 
 <title>Introduction to the Package tree.bins</title>
 
@@ -70,13 +70,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to the Package tree.bins</h1>
 <h4 class="author"><em>Piro Polo</em></h4>
-<h4 class="date"><em>2018-02-19</em></h4>
+<h4 class="date"><em>2018-02-21</em></h4>
 
 
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>When working with large data sets, there may be a need to recategorize the factors by some criterion. The tree.bins package allows users to recategorize these variables through a decision tree method derived from the rpart() function of the rpart library. The tree.bins() function is especially useful if the data set contains several factor class variables, which many of those variables contain an abnormal amount of levels. The intended purpose of the library is to recategorize predictors in order to limit the number of dummy variables created when applying a statistical method to model a response. This document illustrates a typical problem where the tree.bins library would be used and how it would be used.</p>
+<p>When working with large data sets, there may be a need to recategorize the factors by some criterion. The ‘tree.bins’ package allows users to recategorize these variables through a decision tree method derived from the rpart() function of the ‘rpart’ package. The tree.bins() function is especially useful if the data set contains several factor class variables, which many of those variables contain an abnormal amount of levels. The intended purpose of the package is to recategorize predictors in order to limit the number of dummy variables created when applying a statistical method to model a response. This document illustrates a typical problem where the ‘tree.bins’ package would be used and how it would be used.</p>
 </div>
 <div id="pre-categorization-typical-variable-for-consideration" class="section level2">
 <h2>Pre-Categorization: Typical Variable for Consideration</h2>
@@ -163,7 +163,7 @@ rpart.plot<span class="op">::</span><span class="kw">rpart.plot</span>(d.tree)</
 <div id="recategorization-of-candidate-variable" class="section level3">
 <h3>Recategorization of Candidate Variable</h3>
 <p>Continuing from the above example, we can clearly identify that there are similarities in many of the levels within the Neighborhoods variable in relation to the response. To limit the number of dummy variables that are created in a statistical learning method, we would like to group the categories that display similar associations with the responses into one bin. We could create visualizations to identify these similarities in levels for each variable, but it would an extremely tedious task not to mention subjective to the analyst.</p>
-<p>A better method would be to use the rules that are generated from a decision tree. This can be accomplished by using the rpart() function in the rpart library. However, this task remains tedious, especially when there are numerous factor class variables. The tree.bins() function allows the user to iteratively recategorize each factor level variable for the specified data set.</p>
+<p>A better method would be to use the rules that are generated from a decision tree. This can be accomplished by using the rpart() function in the ‘rpart’ package. However, this task remains tedious, especially when there are numerous factor class variables. The tree.bins() function allows the user to iteratively recategorize each factor level variable for the specified data set.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample.df &lt;-<span class="st"> </span>AmesSubset <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Neighborhood, MS.Zoning, SalePrice)
 binned.df &lt;-<span class="st"> </span><span class="kw">tree.bins</span>(<span class="dt">data =</span> sample.df, <span class="dt">y =</span> SalePrice, <span class="dt">bin.nm =</span> <span class="st">&quot;bin#.&quot;</span>, <span class="dt">control =</span> <span class="kw">rpart.control</span>(<span class="dt">cp =</span> .<span class="dv">01</span>), <span class="dt">return =</span> <span class="st">&quot;new.fctrs&quot;</span>)
 <span class="kw">levels</span>(sample.df<span class="op">$</span>Neighborhood) <span class="co">#current levels of Neighborhood</span>

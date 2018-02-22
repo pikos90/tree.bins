@@ -10,16 +10,16 @@ tree.bins(data, y, bin.nm = "Group.", method = NULL, control = NULL,
 \arguments{
 \item{data}{A data.frame.}
 
-\item{y}{The response variables to be used in the rpart function.}
+\item{y}{The response variables to be used in the rpart() function.}
 
 \item{bin.nm}{The string that will be used to categorize the variables. The default "Group." will be assigned.
 E.g. If a variable of 6 factors is recategorized into 3 factors, then setting bin.name equal to "Group." will
 name the three new factors to "Group.1", "Group.2", and "Group.3"}
 
-\item{method}{This is the method that will be used in the rpart function.
+\item{method}{This is the method that will be used in the rpart() function.
 If null, the default method will be used. See rpart() for further detail.}
 
-\item{control}{This is the control that will be used in the rpart function. See rpart() and rpart.control() for further detail.}
+\item{control}{This is the control that will be used in the rpart() function. See rpart() and rpart.control() for further detail.}
 
 \item{return}{This is what the function will return. There are two options:
 1) lkup.list - will provide a list of lookup tables. Each element will contain the original to new mapping for each recategorized variable.
@@ -28,7 +28,7 @@ If null, the default method will be used. See rpart() for further detail.}
 \description{
 The function takes in a data set that contains categorical variable(s) and a response variable.
 It creates a decision tree by using one of the categorical variables (class factor) and the response variable.
-The decision tree is created from the rpart function from the rpart library.
+The decision tree is created from the rpart() function from the 'rpart' package
 The rules from the leaves of the decision tree are extracted, and used to recategorize the appropriate categorical variable (predictor).
 This step is performed for each of the categorical (class factor) variables that is fed into the data component of the function.
 Only variables containing more than 2 factors will be considered in the function.

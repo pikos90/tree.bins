@@ -3,16 +3,25 @@ Type: Package
 Title: Recategorization of Factor Variables by Decision Tree Leaves
 Version: 0.1.0
 Date: 2018-01-31
-Author: Name = Piro Polo, email = piropolo98@gmail.com
+Author: c(person("Piro", "Polo", role = "aut",
+	            email = "piropolo98@gmail.com"))
 Maintainer: Piro Polo <piropolo98@gmail.com>
 Description: Provides users the ability to categorize categorical variables dependent on a response variable. 
     It creates a decision tree by using one of the categorical variables (class factor) and the selected response variable. 
-    The decision tree is created from the rpart function from the rpart library. The rules from the leaves of
+    The decision tree is created from the rpart() function from the 'rpart' package. The rules from the leaves of
     the decision tree are extracted, and used to recategorize the appropriate categorical variable (predictor). This
     step is performed for each of the categorical variables that is fed into the data component of
     the function. Only variables containing more than 2 factor levels will be considered in the function. 
     The final output generates a data set containing the recategorized variables or a list containing a mapping table
-    for each of the candidate variables. 
+    for each of the candidate variables.
+References: c(person("Yan-yan", "Song", role = "aut", 
+              url = <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4466856/>), 
+              person("Trevor", "Hastie", role = "aut", 
+              ISBN = 978-0-387-84857-0), 
+              person("Robert", "Tibshirani", role = "aut", 
+              ISBN = 978-0-387-84857-0), 
+              person("Jerome", "Friedman", role = "aut", 
+              ISBN = 978-0-387-84857-0))
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE

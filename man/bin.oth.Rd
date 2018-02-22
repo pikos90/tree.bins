@@ -7,7 +7,7 @@
 bin.oth(list, data)
 }
 \arguments{
-\item{list}{A list generated from the tree.bins function or created by the user to the specifications laid out in the description.}
+\item{list}{A list generated from the tree.bins() function or created by the user to the specifications laid out in the description.}
 
 \item{data}{A data.frame.}
 }

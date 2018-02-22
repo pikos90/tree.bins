@@ -5,7 +5,7 @@
 #' The first column name of each element of the list must be a variable name in the data.frame.
 #' Effectively, each element of the list is a mapping table. The list generated from the tree.bins()
 #' function can be directly passed as an element to this function.
-#' @param list A list generated from the tree.bins function or created by the user to the specifications laid out in the description.
+#' @param list A list generated from the tree.bins() function or created by the user to the specifications laid out in the description.
 #' @param data A data.frame.
 #' @export
 #' @import dplyr
