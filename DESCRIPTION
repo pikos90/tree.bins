@@ -3,8 +3,8 @@ Type: Package
 Title: Recategorization of Factor Variables by Decision Tree Leaves
 Version: 0.1.0
 Date: 2018-01-31
-Author: c(person("Piro", "Polo", role = "aut",
-	            email = "piropolo98@gmail.com"))
+Authors@R: person("Piro", "Polo", role = c("aut", "cre"),
+	            email = "piropolo98@gmail.com")
 Maintainer: Piro Polo <piropolo98@gmail.com>
 Description: Provides users the ability to categorize categorical variables dependent on a response variable. 
     It creates a decision tree by using one of the categorical variables (class factor) and the selected response variable. 
@@ -14,7 +14,7 @@ Description: Provides users the ability to categorize categorical variables depe
     the function. Only variables containing more than 2 factor levels will be considered in the function. 
     The final output generates a data set containing the recategorized variables or a list containing a mapping table
     for each of the candidate variables. For more details see T. Hastie et al (2009, ISBN: 978-0-387-84857-0) or 
-    Y. Song (2015) <doi:10.11919/j.issn.1002-0829.215044> <arXiv:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4466856/>.
+    Y. Song (2015) <doi:10.11919/j.issn.1002-0829.215044>.
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE
