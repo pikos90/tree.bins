@@ -13,8 +13,7 @@ Description: Provides users the ability to categorize categorical variables depe
     step is performed for each of the categorical variables that is fed into the data component of
     the function. Only variables containing more than 2 factor levels will be considered in the function. 
     The final output generates a data set containing the recategorized variables or a list containing a mapping table
-    for each of the candidate variables. For more details see T. Hastie et al (2009, ISBN: 978-0-387-84857-0) or 
-    Y. Song (2015) <doi:10.11919/j.issn.1002-0829.215044>.
+    for each of the candidate variables. For more details see T. Hastie et al (2009, ISBN: 978-0-387-84857-0).
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE
