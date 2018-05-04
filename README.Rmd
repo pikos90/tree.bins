@@ -4,7 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, results='hide', message=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -12,10 +12,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+
 ## Overview
 -----------
 
-Provides users the ability to categorize categorical variables dependent on a response variable. It creates a decision tree by using one of the categorical variables (class factor) and the selected response variable. The decision tree is created from the rpart() function from the 'rpart' package. The rules from the leaves of the decision tree are extracted, and used to recategorize the appropriate categorical variable (predictor). This step is performed for each of the categorical variables that is fed into the data component of the function. Only variables containing more than 2 factor levels will be considered in the function. The final output generates a data set containing the recategorized variables or a list containing a mapping table for each of the candidate variables. For more details see T. Hastie et al (2009, ISBN: 978-0-387-84857-0).
+Provides users the ability to categorize categorical variables dependent on a response variable. It creates a decision tree by using one of the categorical variables (class factor) and the selected response variable. The decision tree is created from the rpart() function from the 'rpart' package. The rules from the leaves of the decision tree are extracted, and used to recategorize the appropriate categorical variable (predictor). This step is performed for each of the categorical variables that is fed into the data component of the function. Only variables containing more than 2 factor levels will be considered in the function. The final output generates a data set containing the recategorized variables or a list containing a mapping table for each of the candidate variables. For more details see T. Hastie et al (2009, ISBN: 978-0-387-84857-0). For detailed examples and functionality see vignettes. 
 
 
 ## Installation
@@ -34,22 +36,24 @@ devtools::install_github("pikos90/tree.bins")
 
 ## Usage
 
-Uses tree.bins() to recategorize your data
-
-```{r example}
+Uses tree.bins() to recategorize your data. 
+```{r}
 ## basic example code
 sample.df <- AmesImpFctrs[, c("Neighborhood","MS.Zoning", "SalePrice" )]
 recategorized.df <- tree.bins(data = sample.df, y = SalePrice)
 head(recategorized.df)
 ```
 
-Uses tree.bins() to create a list of mapping tables and uses that list to recategorize your a different data set with bin.oth()
-
-```{r example}
+Uses tree.bins() to create a list of mapping tables.
+```{r}
 ## basic example code
 sample.df <- AmesImpFctrs[, c("Neighborhood","MS.Zoning", "SalePrice" )]
 recategorized.list <- tree.bins(data = sample.df, y = SalePrice, return = "lkup.list")
+head(recategorized.list[[1]])
+```
 
+Use that list to recategorize your a different data set with bin.oth().
+```{r}
 other.sample.df <- AmesImpFctrs[, c("Neighborhood","MS.Zoning", "Sale.Condition", "SalePrice" )]
 other.df <- bin.oth(list = recategorized.list, data = other.sample.df)
 head(other.df)
