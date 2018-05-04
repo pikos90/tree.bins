@@ -205,3 +205,41 @@ test_that("Check for correct classes and that order does not affect y (SalePrice
   expect_identical(fnc.class, test.df.class, "Testing that the df is the same")
 })
 
+####################################################################
+############# Manually Assign Specified cp Per Variable ############
+####################################################################
+
+test_that("Check for correct classes and that order does not affect y (SalePrice here)", {
+
+  test.df <- AmesSubset %>%
+    select(MS.Zoning, SalePrice, Neighborhood)
+
+  cp.df <- data.frame(Variables = c("Neighborhood", "MS.Zoning"), CP = c(.001, .2))
+
+  fnc <- tree.bins(test.df, y = SalePrice, control = cp.df, return = "lkup.list")
+
+  cp.neighborhood = rpart(SalePrice ~ Neighborhood, data =test.df, cp = .001)
+  #rpart.plot(cp.neighborhood)
+
+  cp.mszoning = rpart(SalePrice ~ MS.Zoning, data =test.df, cp = .2)
+  #rpart.plot(cp.mszoning)
+
+  test.list <- list(
+    NULL,
+    data.frame(Neighborhood = c("BrDale", "IDOTRR", "MeadowV", "Blueste", "Edwards",
+                                "Landmrk", "Sawyer", "SWISU", "Blmngtn", "Gilbert",
+                                "NWAmes", "SawyerW", "Somerst", "BrkSide", "OldTown",
+                                "Mitchel", "NAmes", "NPkVill", "ClearCr", "CollgCr",
+                                "Crawfor", "Greens", "GrnHill", "NoRidge", "NridgHt",
+                                "StoneBr", "Timber", "Veenker"),
+               Categories = c("Group.1", "Group.1", "Group.1", "Group.2", "Group.2",
+                              "Group.2", "Group.2", "Group.2", "Group.3", "Group.3",
+                              "Group.3", "Group.3", "Group.4", "Group.5", "Group.5",
+                              "Group.6", "Group.7", "Group.7", "Group.8", "Group.8",
+                              "Group.8", "Group.8", "Group.9", "Group.9", "Group.9",
+                              "Group.9", "Group.10", "Group.10"), stringsAsFactors = FALSE))
+
+
+
+  expect_identical(fnc, test.list, "Testing that the df is the same")
+})

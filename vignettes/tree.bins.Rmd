@@ -77,9 +77,25 @@ A better method would be to use the rules that are generated from a decision tre
 
 ```{r}
 sample.df <- AmesSubset %>% select(Neighborhood, MS.Zoning, SalePrice)
-binned.df <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = rpart.control(cp = .01), return = "new.fctrs")
+binned.df <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", return = "new.fctrs")
 levels(sample.df$Neighborhood) #current levels of Neighborhood
 unique(binned.df$Neighborhood) #new levels of Neighborhood
+```
+
+The control parameter in the tree.bins() function serves the same purpose as the control parameter in the rpart() function. If the user specifies 
+a value for this parameter, that value will be used to prune the tree for each variable passed in to the data parameter. Remember, that a decision 
+tree is being built to refactor each variable into new levels. 
+```{r}
+binned.df2 <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = rpart.control(cp = .001), return = "new.fctrs")
+unique(binned.df2$Neighborhood) #new levels of Neighborhood
+```
+
+The user can also create a two-dimensinal data.frame() and pass that argument into the control parameter. The first column must contain the name
+of a variable that is contained in the data.frame() specified in the data parameter. The second column must contain the cp values of the respective variable names. Any variables names not included in this user created data.frame() will use the default cp value within the rpart() function. Lastly, the names of this user created data.frame() is irrelavant, only the attributes are important.
+```{r}
+cp.df <- data.frame(Variables = c("Neighborhood", "MS.Zoning"), CP = c(.001, .2))
+binned.df3 <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = cp.df, return = "new.fctrs")
+unique(binned.df3$Neighborhood) #new levels of Neighborhood by user de
 ```
 
 ## The Different Return Options of tree.bins() 

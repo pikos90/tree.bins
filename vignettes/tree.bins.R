@@ -31,9 +31,18 @@ rpart.plot::rpart.plot(d.tree)
 
 ## ------------------------------------------------------------------------
 sample.df <- AmesSubset %>% select(Neighborhood, MS.Zoning, SalePrice)
-binned.df <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = rpart.control(cp = .01), return = "new.fctrs")
+binned.df <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", return = "new.fctrs")
 levels(sample.df$Neighborhood) #current levels of Neighborhood
 unique(binned.df$Neighborhood) #new levels of Neighborhood
+
+## ------------------------------------------------------------------------
+binned.df2 <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = rpart.control(cp = .001), return = "new.fctrs")
+unique(binned.df2$Neighborhood) #new levels of Neighborhood
+
+## ------------------------------------------------------------------------
+cp.df <- data.frame(Variables = c("Neighborhood", "MS.Zoning"), CP = c(.001, .2))
+binned.df3 <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = cp.df, return = "new.fctrs")
+unique(binned.df3$Neighborhood) #new levels of Neighborhood by user de
 
 ## ------------------------------------------------------------------------
 head(binned.df)

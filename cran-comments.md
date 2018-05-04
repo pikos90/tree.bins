@@ -13,6 +13,10 @@
 
 This is a new release, so there are no reverse dependencies.
 
+## tree.bins() changes made
+
+Added additional functionality to tree.bins() function to allow user to specify a cp for individual variables if desired.
+
 ---
 
 * I have run R CMD check on the NUMBER downstream dependencies.
