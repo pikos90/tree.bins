@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tree.bins)](https://cran.r-project.org/package=tree.bins)
 
 ## Overview
 -----------
