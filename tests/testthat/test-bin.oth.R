@@ -1,12 +1,10 @@
-library(data.table)
-library(rpart)
-library(rpart.plot)
-library(rpart.utils)
-library(testthat)
-library(tree.bins)
-library(dplyr)
 
 context("Testing bin.oth() function")
+
+test_that("random test", {
+  expect_equal(1, 1)
+})
+
 
 test_that("Test if bin.oth() returns same result as if running tree.bins() with the same df", {
 

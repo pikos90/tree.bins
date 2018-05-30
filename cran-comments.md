@@ -15,7 +15,7 @@ This is a new release, so there are no reverse dependencies.
 
 ## tree.bins() changes made
 
-Added additional functionality to tree.bins() function to allow user to specify a cp for individual variables if desired.
+Added additional functionality to tree.bins() function to allow user to specify a cp for individual variables if desired and added an additional option for the return parameter "both." Also updated vignettes and README files. 
 
 ---
 

@@ -1,10 +1,3 @@
-library(data.table)
-library(rpart)
-library(rpart.plot)
-library(rpart.utils)
-library(testthat)
-library(tree.bins)
-library(dplyr)
 
 context("Testing tree.bins() function")
 
@@ -16,13 +9,14 @@ context("Testing tree.bins() function")
 ### Testing results for expected errors with:
 ### 1 predictor & levels 1:3 & no leaves =>  Levels > 3 will react as 3
 
+
 test_that("Testing for 1 predictor df with no leaves and 1 levels", {
 
   test.df <- AmesSubset %>%
     select(Street, SalePrice) %>%
     mutate(Street = "Grvl" %>% as.factor())
 
-  expect_error(tree.bins(test.df, SalePrice), "object 'new.fctrs' not found")
+  expect_error(tree.bins(test.df, SalePrice, return = "new.fctrs"), "object 'new.fctrs' not found")
 
 })
 
@@ -30,7 +24,7 @@ test_that("Testing for 1 predictor df with no leaves and 2 levels", {
 
   test.df <- AmesSubset %>% select(Street, SalePrice)
 
-  expect_error(tree.bins(test.df, SalePrice), "object 'new.fctrs' not found")
+  expect_error(tree.bins(test.df, SalePrice, return = "new.fctrs"), "object 'new.fctrs' not found")
 
 })
 
@@ -43,7 +37,7 @@ test_that("Testing for 1 predictor df with no leaves and 3 levels", {
   # tree = rpart(formula = SalePrice ~ Street, data = test.df)
   # tree.rules = unlist(rpart.lists(tree))
 
-  expect_error(tree.bins(test.df, SalePrice), "object 'new.fctrs' not found")
+  expect_error(tree.bins(test.df, SalePrice, return = "new.fctrs"), "object 'new.fctrs' not found")
 
 })
 
@@ -65,7 +59,8 @@ test_that("Testing for 1 predictor df & 2 levels & 2 leaves", {
   # tree = rpart(formula = SalePrice ~ Street, cp = .001, data = test.df)
   # rpart.plot(tree)
 
-  expect_error(tree.bins(test.df, SalePrice, control = rpart.control(cp = .001)), "object 'new.fctrs' not found")
+  expect_error(tree.bins(test.df, SalePrice, control = rpart.control(cp = .001), return = "new.fctrs"),
+               "object 'new.fctrs' not found")
 })
 
 #######################################
@@ -197,7 +192,7 @@ test_that("Check for correct classes and that order does not affect y (SalePrice
   test.df.class <- data.frame(Class = c(class(test.df.adj[[1]]), class(test.df.adj[[2]]),
                                         class(test.df.adj[[3]]),class(test.df.adj[[4]])))
 
-  fnc <- tree.bins(test.df, y = SalePrice)
+  fnc <- tree.bins(test.df, y = SalePrice, return = "new.fctrs")
 
   fnc.class <- data.frame(Class = c(class(fnc[[1]]), class(fnc[[2]]),
                                         class(fnc[[3]]), class(fnc[[4]])))
@@ -243,3 +238,4 @@ test_that("Check for correct classes and that order does not affect y (SalePrice
 
   expect_identical(fnc, test.list, "Testing that the df is the same")
 })
+

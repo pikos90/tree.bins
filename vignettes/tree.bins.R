@@ -14,12 +14,12 @@ AmesSubset %>%
   select(SalePrice, Neighborhood) %>% 
   group_by(Neighborhood) %>% 
   summarise(AvgPrice = mean(SalePrice)/1000) %>% 
-  ggplot(aes(x = reorder(Neighborhood, -AvgPrice), y = AvgPrice, fill = Neighborhood)) +
-  geom_bar(stat = "identity") + 
+  ggplot(aes(x = reorder(Neighborhood, -AvgPrice), y = AvgPrice)) +
+  geom_bar(stat = "identity", fill = "#389135") + 
   labs(x = "Neighborhoods", y = "Avg Price (in thousands)", 
-       title = paste0("Average Home Prices of Neighborhoods") , fill = "Neighborhoods") +
+       title = paste0("Average Home Prices of Neighborhoods")) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1))
 
 ## ------------------------------------------------------------------------
 fit <- lm(formula = SalePrice ~ Neighborhood, data = AmesSubset)
@@ -50,6 +50,11 @@ head(binned.df)
 ## ------------------------------------------------------------------------
 lookup.list <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = rpart.control(cp = .01), return = "lkup.list")
 head(lookup.list[[1]])
+
+## ------------------------------------------------------------------------
+both <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = rpart.control(cp = .01), return = "both")
+head(both$new.fctrs)
+head(both$lkup.list)
 
 ## ---- warning=FALSE------------------------------------------------------
 oth.binned.df <- bin.oth(list = lookup.list, data = sample.df)
