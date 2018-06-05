@@ -29,5 +29,6 @@ Suggests:
     rmarkdown,
     testthat, 
     rpart.plot, 
-    ggplot2
+    ggplot2,
+    ggthemes
 VignetteBuilder: knitr

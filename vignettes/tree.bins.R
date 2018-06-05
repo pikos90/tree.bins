@@ -5,6 +5,7 @@ options(tibble.print_min = 4L, tibble.print_max = 4L)
 library(dplyr)
 library(rpart)
 library(ggplot2)
+library(ggthemes)
 library(tree.bins)
 library(rpart.utils)
 library(data.table)
@@ -18,8 +19,10 @@ AmesSubset %>%
   geom_bar(stat = "identity", fill = "#389135") + 
   labs(x = "Neighborhoods", y = "Avg Price (in thousands)", 
        title = paste0("Average Home Prices of Neighborhoods")) +
-  theme_bw() +
-  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1))
+  theme_economist() +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1, size = 8),
+        axis.title.x = element_text(size = 12), axis.text.y = element_text(size = 9),
+        axis.title.y = element_text(size = 12))
 
 ## ------------------------------------------------------------------------
 fit <- lm(formula = SalePrice ~ Neighborhood, data = AmesSubset)

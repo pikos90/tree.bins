@@ -16,6 +16,7 @@ options(tibble.print_min = 4L, tibble.print_max = 4L)
 library(dplyr)
 library(rpart)
 library(ggplot2)
+library(ggthemes)
 library(tree.bins)
 library(rpart.utils)
 library(data.table)
@@ -23,7 +24,7 @@ library(data.table)
 
 
 ## Overview
-When conducting data analysis or using machine learning algorithms, you may encounter variables with several levels. In these scenarios, decision trees can be used to decide how to best collapse these categorical variables into more manageable factors. The package 'tree.bins' provides users the ability to recategorize categorical variables dependent on a response variable by iteratively creating a decision tree for each of the categorical variables (class factor) and the selected response variable. The decision tree is created from the rpart() function from the 'rpart' package. The rules from the leaves of the decision tree are extracted, and used to recategorize (bin) the appropriate categorical variable (predictor). This step is performed for each of the categorical variables that is passed onto the data component of the function. Only variables containing more than two factor levels will be considered in the function. The final output generates a data set containing the recategorized variables and/or a list containing a mapping table for each of the candidate variables. For more details see Dr. Yan-yan Song article (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4466856/) or T. Hastie et al (2009, ISBN: 978-0-387-84857-0). For detailed examples and functionality see vignettes. 
+When conducting data analysis or using machine learning algorithms, you may encounter variables with several levels. In these scenarios, decision trees can be used to decide how to best collapse these categorical variables into more manageable factors. I created the package 'tree.bins' to provide users the ability to recategorize categorical variables, dependent on a response variable, by iteratively creating a decision tree for each of the categorical variables (class factor) and the selected response variable. The decision tree is created from the rpart() function from the 'rpart' package. The rules from the leaves of the decision tree are extracted, and used to recategorize (bin) the appropriate categorical variable (predictor). This step is performed for each of the categorical variables that is passed onto the data component of the function. Only variables containing more than two factor levels will be considered in the function. The final output generates a data set containing the recategorized variables and/or a list containing a mapping table for each of the candidate variables. For more details see Dr. Yan-yan Song's article (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4466856/) or T. Hastie et al (2009, ISBN: 978-0-387-84857-0). For detailed examples and functionality see vignettes. 
 
 
 ## Introduction
@@ -44,8 +45,10 @@ AmesSubset %>%
   geom_bar(stat = "identity", fill = "#389135") + 
   labs(x = "Neighborhoods", y = "Avg Price (in thousands)", 
        title = paste0("Average Home Prices of Neighborhoods")) +
-  theme_bw() +
-  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1))
+  theme_economist() +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1, size = 8),
+        axis.title.x = element_text(size = 12), axis.text.y = element_text(size = 9),
+        axis.title.y = element_text(size = 12))
 ```
 
 Notice that many neighborhoods observe the same average sale price. This indicates that we could combine and recategorize the Neighborhoods variable into fewer levels. 
@@ -68,7 +71,7 @@ d.tree = rpart(formula = SalePrice ~ Neighborhood, data = AmesSubset)
 rpart.plot::rpart.plot(d.tree)
 ```
 
-These 5 categories is what tree.bins() will use to recategorize the variable Neighborhood.
+These 5 categories are what tree.bins() will use to recategorize the variable Neighborhood.
 
 ## Post-Categorization: Typical Variable for Consideration
 This section illustrates the result of using tree.bins() to recategorize a typical variable.
@@ -126,7 +129,7 @@ head(both$lkup.list)
 
 ## Using the bin.oth() Function
 
-Using tree.bins() the user will be able to recategorize factor class variables of only the data.frame passed into the data parameter. Assuming that similar data will be continue to be collected, or perhaps used in testing the performance of the model, a user may want to recategorize this new data.frame by the same lookup tables that were generated from the first data.frame. In this case, being able to bin other data.frames with the same lookup table would be quite useful. The example below takes in a subset of the AmesSubset data and returns a data.frame recategorized by the lookup list generated from the tree.bins() function. 
+Using tree.bins() the user will be able to recategorize factor class variables of only the data.frame passed into the data parameter. Assuming that similar data will continue to be collected, or perhaps used in testing the performance of the model, a user may want to recategorize this new data.frame by the same lookup tables that were generated from the first data.frame. In this case, being able to bin other data.frames with the same lookup table would be quite useful. The example below takes in a subset of the AmesSubset data and returns a data.frame recategorized by the lookup list generated from the tree.bins() function. 
 
 ```{r, warning=FALSE}
 oth.binned.df <- bin.oth(list = lookup.list, data = sample.df)
