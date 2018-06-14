@@ -43,9 +43,10 @@ binned.df2 <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", contr
 unique(binned.df2$Neighborhood) #new levels of Neighborhood
 
 ## ------------------------------------------------------------------------
-cp.df <- data.frame(Variables = c("Neighborhood", "MS.Zoning"), CP = c(.001, .2))
+cp.df <- data.frame(Variables = c("Neighborhood", "MS.Zoning"), CP = c(.001, .1))
 binned.df3 <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = cp.df, return = "new.fctrs")
-unique(binned.df3$Neighborhood) #new levels of Neighborhood by user de
+unique(binned.df3$Neighborhood) #new levels of Neighborhood
+unique(binned.df3$MS.Zoning) #new levels of MS.Zoning
 
 ## ------------------------------------------------------------------------
 head(binned.df)

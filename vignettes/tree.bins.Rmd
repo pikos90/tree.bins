@@ -98,9 +98,10 @@ unique(binned.df2$Neighborhood) #new levels of Neighborhood
 The user can also create a two-dimensinal data.frame() and pass this object into the control parameter. The first column must contain the variable name(s) that are contained in the data.frame() specified in the data parameter. The second column must contain the cp values of the respective variable name(s). Any variable name(s) not included in this user created data.frame() will use the generated cp value within the rpart() function. Lastly, the column names identified for this user created data.frame() are irrelavant, only the elements are important.
 
 ```{r}
-cp.df <- data.frame(Variables = c("Neighborhood", "MS.Zoning"), CP = c(.001, .2))
+cp.df <- data.frame(Variables = c("Neighborhood", "MS.Zoning"), CP = c(.001, .1))
 binned.df3 <- tree.bins(data = sample.df, y = SalePrice, bin.nm = "bin#.", control = cp.df, return = "new.fctrs")
-unique(binned.df3$Neighborhood) #new levels of Neighborhood by user de
+unique(binned.df3$Neighborhood) #new levels of Neighborhood
+unique(binned.df3$MS.Zoning) #new levels of MS.Zoning
 ```
 
 ## The Different Return Options of tree.bins() 

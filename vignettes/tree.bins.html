@@ -185,11 +185,13 @@ binned.df &lt;-<span class="st"> </span><span class="kw">tree.bins</span>(<span 
 <span class="co">#&gt;  [1] &quot;bin#.7&quot;  &quot;bin#.3&quot;  &quot;bin#.9&quot;  &quot;bin#.4&quot;  &quot;bin#.1&quot;  &quot;bin#.2&quot;  &quot;bin#.8&quot; </span>
 <span class="co">#&gt;  [8] &quot;bin#.5&quot;  &quot;bin#.6&quot;  &quot;bin#.10&quot;</span></code></pre></div>
 <p>The user can also create a two-dimensinal data.frame() and pass this object into the control parameter. The first column must contain the variable name(s) that are contained in the data.frame() specified in the data parameter. The second column must contain the cp values of the respective variable name(s). Any variable name(s) not included in this user created data.frame() will use the generated cp value within the rpart() function. Lastly, the column names identified for this user created data.frame() are irrelavant, only the elements are important.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cp.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Variables =</span> <span class="kw">c</span>(<span class="st">&quot;Neighborhood&quot;</span>, <span class="st">&quot;MS.Zoning&quot;</span>), <span class="dt">CP =</span> <span class="kw">c</span>(.<span class="dv">001</span>, .<span class="dv">2</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cp.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Variables =</span> <span class="kw">c</span>(<span class="st">&quot;Neighborhood&quot;</span>, <span class="st">&quot;MS.Zoning&quot;</span>), <span class="dt">CP =</span> <span class="kw">c</span>(.<span class="dv">001</span>, .<span class="dv">1</span>))
 binned.df3 &lt;-<span class="st"> </span><span class="kw">tree.bins</span>(<span class="dt">data =</span> sample.df, <span class="dt">y =</span> SalePrice, <span class="dt">bin.nm =</span> <span class="st">&quot;bin#.&quot;</span>, <span class="dt">control =</span> cp.df, <span class="dt">return =</span> <span class="st">&quot;new.fctrs&quot;</span>)
-<span class="kw">unique</span>(binned.df3<span class="op">$</span>Neighborhood) <span class="co">#new levels of Neighborhood by user de</span>
+<span class="kw">unique</span>(binned.df3<span class="op">$</span>Neighborhood) <span class="co">#new levels of Neighborhood</span>
 <span class="co">#&gt;  [1] &quot;bin#.7&quot;  &quot;bin#.3&quot;  &quot;bin#.9&quot;  &quot;bin#.4&quot;  &quot;bin#.1&quot;  &quot;bin#.2&quot;  &quot;bin#.8&quot; </span>
-<span class="co">#&gt;  [8] &quot;bin#.5&quot;  &quot;bin#.6&quot;  &quot;bin#.10&quot;</span></code></pre></div>
+<span class="co">#&gt;  [8] &quot;bin#.5&quot;  &quot;bin#.6&quot;  &quot;bin#.10&quot;</span>
+<span class="kw">unique</span>(binned.df3<span class="op">$</span>MS.Zoning) <span class="co">#new levels of MS.Zoning</span>
+<span class="co">#&gt; [1] &quot;bin#.1&quot; &quot;bin#.2&quot;</span></code></pre></div>
 </div>
 </div>
 <div id="the-different-return-options-of-tree.bins" class="section level2">
