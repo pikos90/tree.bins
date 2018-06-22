@@ -15,13 +15,11 @@ knitr::opts_chunk$set(
 
 
 ## Overview
------------
 
 The package 'tree.bins' provides users the ability to recategorize categorical variables dependent on a response variable by iteratively creating a decision tree for each of the categorical variables (class factor) and the selected response variable. The decision tree is created from the rpart() function from the 'rpart' package. The rules from the leaves of the decision tree are extracted, and used to recategorize (bin) the appropriate categorical variable (predictor). This step is performed for each of the categorical variables that is passed onto the data component of the function. Only variables containing more than 2 factor levels will be considered in the function. The final output generates a data set containing the recategorized variables and/or a list containing a mapping table for each of the candidate variables. For more details see Dr. Yan-yan Song article (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4466856/) or T. Hastie et al (2009, ISBN: 978-0-387-84857-0). For detailed examples and functionality see vignettes.
 
 
 ## Installation
----------------
 
 You can install tree.bins with:
 
