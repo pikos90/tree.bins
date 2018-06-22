@@ -5,6 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, echo = FALSE, results='hide', message=FALSE}
+library(tree.bins)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -12,10 +13,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tree.bins)](https://cran.r-project.org/package=tree.bins)
-[![Downloads](http://cranlogs.r-pkg.org/badges/tree.bins)](http://cran.rstudio.com/package=tree.bins)
-[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/tree.bins)](http://cran.rstudio.com/package=tree.bins)
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
 ## Overview
 -----------
